@@ -1,12 +1,14 @@
 const practitionerService = require('./services/practitioner');
 const patientService = require('./services/patient');
 const encounterService = require('./services/encounter');
+const mediaService = require('./services/media');
 
 // Exporta todos os serviços para uso externo
 module.exports = {
   practitionerService,
   patientService,
-  encounterService
+  encounterService,
+  mediaService
 };
 
 // Exemplo de uso

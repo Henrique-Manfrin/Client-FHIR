@@ -1,7 +1,7 @@
 const fhirClient = require('./fhirApi');
 
 class EncounterService {
-  async create({ practitionerId, patientId, date, type = 'ambulatory' }) {
+  async create({ practitionerId, patientId, date, type = 'ambulatory', observacoes = '' }) {
     const encounterData = {
       resourceType: 'Encounter',
       status: 'finished',
@@ -23,7 +23,12 @@ class EncounterService {
       period: {
         start: date.toISOString(),
         end: date.toISOString()
-      }
+      },
+      note: [
+        {
+          text: observacoes
+        }
+      ]
     };
 
     return await fhirClient.create('Encounter', encounterData);

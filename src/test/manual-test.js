@@ -1,4 +1,5 @@
-const { practitionerService, patientService, encounterService } = require('../index');
+const { practitionerService, patientService, encounterService, mediaService } = require('../index');
+const path = require('path');
 
 async function executarTestesManual() {
   console.log('Iniciando testes manuais...\n');
@@ -28,14 +29,26 @@ async function executarTestesManual() {
     });
     console.log('✓ Médico criado com sucesso:', medico.id);
 
-    // 3. Criar uma consulta
+    // 3. Criar uma consulta com observações
     console.log('\n3. Testando criação de consulta...');
     const consulta = await encounterService.create({
       practitionerId: medico.id,
       patientId: paciente.id,
-      date: new Date()
+      date: new Date(),
+      observacoes: 'Paciente apresentou sintomas de gripe. Prescrito repouso e medicamentos.'
     });
     console.log('✓ Consulta criada com sucesso:', consulta.id);
+
+    // Adicionar teste para Media
+    console.log('\n7. Testando upload de áudio da consulta...');
+    const audioPath = path.join(__dirname, '..', '..', 'Teste de Áudio.wav');
+    const media = await mediaService.create({
+      encounterId: consulta.id,
+      audioPath: audioPath,
+      title: 'Gravação da Consulta',
+      description: 'Áudio da consulta médica realizada'
+    });
+    console.log('✓ Áudio da consulta salvo com sucesso:', media.id);
 
     // 4. Buscar paciente criado
     console.log('\n4. Testando busca de paciente...');
