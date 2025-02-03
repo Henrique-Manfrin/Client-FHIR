@@ -162,3 +162,7 @@ O projeto inclui um sistema robusto de tratamento de erros através da classe `F
   }]
 }
 ```
+## perguntas
+- instancia local - e se precisarmos acessar uma instancia externa? como acessar um servidor HAPI ou outro FHIR que nao so esteja em uma porta HTTPS - como configurar o HTTPS dentro do FHIR - como autenticar o OUATH2 - CONTROLE DE ACESSO -  Inserir cabeçalho de autorização e token de autenticação / chave de api 
+
+- Como fazer o audio ser salvo junto do ultimo encounter? Em teoria o encounter é salvo após a consulta, então como relacionar com a consulta certa ?
